@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+}
+
+.App {
+    width: 800px;
+}
+
+.heading {
+    align-items: center;
+    text-align: center;
+}
+
+.post {
+    display: flex;
+    padding: 15px;
+    border: 2px solid yellowgreen;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.posts-not-found {
+    align-items: center;
+    text-align: center;
+}
+
+.page__wrapper {
+    margin-top: 30px;
+    display: flex;
+}
+
+.page {
+    padding: 10px;
+
+    margin: 0 5px;
+    border: 1px solid yellowgreen;
+    cursor: pointer;
+}
+
+.page__current {
+    border: 2px solid blue;
+    font-weight: bold;
+}

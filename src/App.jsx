@@ -45,6 +45,8 @@ function App() {
     setPage(page)
   }
 
+  let pagesArray = [];
+
   return (
     <div className="App">
       <Button style={{ marginTop: 50 }} onClick={() => setModal(true)}>
@@ -65,9 +67,10 @@ function App() {
         : <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Список постов" />
       }
       <Pagination
-        page={page}
-        changePage={changePage}
+        pagesArray={pagesArray}
         totalPages={totalPages}
+        currentPage={page}
+        changePage={changePage}
       />
     </div>
   );

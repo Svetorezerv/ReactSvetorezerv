@@ -9,20 +9,24 @@ const PostIdPage = () => {
     const [postId, setPostId] = useState();
     const [fetchPostById, isLoading, error] = useFetching(async (id) => {
         const response = await PostService.getById(id)
-        console.log(response);
-        setPostId(response)
+        console.log(response.results);
+        setPostId(response.results[0].name)
     })
 
     useEffect(() => {
         fetchPostById(params.id)
     }, []);
 
+    console.log(postId);
+
     return (
         <div>
             <h1>Вы открыли страницу товара: {params.id}</h1>
             {isLoading 
             ? <Loader/> 
-            : <div>{postId.results[0].name}</div>
+            : <div>
+                Название товара: {postId}
+            </div>
             }
         </div>
     );

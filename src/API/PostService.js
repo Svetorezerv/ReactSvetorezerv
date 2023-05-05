@@ -5,4 +5,11 @@ export default class PostService {
     console.log(result);
     return result;
   }
+
+  static async getById(id) {
+    const response = await fetch(`https://tetreco.com/api/catalog/?search=${id}`);
+    const result = await response.json();
+    console.log(result);
+    return result;
+  }
 }

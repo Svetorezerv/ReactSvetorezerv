@@ -2,31 +2,37 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetching } from '../hooks/useFetching';
 import PostService from '../API/PostService';
+import "../styles/App.css";
 import Loader from '../components/UI/loader/Loader';
 
 const PostIdPage = () => {
     const params = useParams();
-    const [postId, setPostId] = useState();
+    const [post, setPost] = useState({});
     const [fetchPostById, isLoading, error] = useFetching(async (id) => {
         const response = await PostService.getById(id)
-        console.log(response.results);
-        setPostId(response.results[0].name)
+        setPost(response.results)
     })
 
     useEffect(() => {
-        fetchPostById(params.id)
+        fetchPostById(params.id);
     }, []);
 
-    console.log(postId);
+    console.log(post[0]);
 
     return (
         <div>
             <h1>Вы открыли страницу товара: {params.id}</h1>
-            {isLoading 
-            ? <Loader/> 
-            : <div>
-                Название товара: {postId}
-            </div>
+            {isLoading
+                ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
+                : <div>
+                    <p>
+                        ID товара:{post[0].id}
+                    </p>
+                    <p>
+                        Наименование товара:  {post[0].name}
+                    </p>
+                    <img className='image' src={post[0].image} alt={post[0].name} />
+                </div>
             }
         </div>
     );

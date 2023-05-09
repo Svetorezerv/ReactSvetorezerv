@@ -4,7 +4,7 @@ import "../styles/App.css";
 import { useNavigate } from 'react-router-dom'
 
 const PostItem = (props) => {
-    const router = useNavigate();
+    const router = useNavigate(); 
     return (
         <div className="post">
             <div className="post__content">

@@ -19,10 +19,16 @@ const PostIdPage = () => {
 
     console.log(post[0]);
 
+    function loading() {
+        if (post[0] === undefined) {
+            return true;
+        }
+    }
+
     return (
         <div>
             <h1>Вы открыли страницу товара: {params.id}</h1>
-            {isLoading
+            {loading()
                 ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
                 : <div>
                     <p>

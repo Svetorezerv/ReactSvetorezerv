@@ -3,7 +3,6 @@ import CategoriesItem from './CategoriesItem';
 import "../styles/App.css";
 
 const CategoriesList = ({ categories }) => {
-
     if (!categories.length) {
         return (
             <h1 style={{ textAlign: 'center' }}>

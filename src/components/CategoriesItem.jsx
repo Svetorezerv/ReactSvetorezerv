@@ -1,11 +1,14 @@
 import React from 'react'
 import "../styles/App.css";
+import { useNavigate } from 'react-router-dom'
+import Button from './UI/button/Button';
 
 const CategoriesItem = (props) => {
+    const router = useNavigate(); 
     return (
-        <div className="categories__item">
+        <Button onClick={() => router(`/posts/${props.category.name}`)} className="categories__item">
             <img className="categories__image" src={props.category.image} alt={props.category.name} />
-        </div>
+        </Button>
     )
 }
 

@@ -72,3 +72,12 @@
     margin-left: auto;
     margin-right: 0;
 }
+
+.categories__list {
+    display: flex;
+}
+
+.categories__image {
+    height: 100px;
+    width: 100px;
+}

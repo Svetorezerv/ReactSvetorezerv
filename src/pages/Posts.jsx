@@ -11,6 +11,7 @@ import Loader from '../components/UI/loader/Loader'
 import { useFetching } from '../hooks/useFetching';
 import { getPageCount } from '../utils/pages';
 import Pagination from '../components/UI/pagination/Pagination';
+import CategoriesList from '../components/CategoriesList';
 
 function App() {
     const [posts, setPosts] = useState([])
@@ -20,6 +21,7 @@ function App() {
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
+    const [categories, setCategories] = useState([])
 
     const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
         const result = await PostService.getAll(limit, page);
@@ -28,9 +30,18 @@ function App() {
         setTotalPages(getPageCount(totalPages, limit));
     })
 
+    const [fetchCategories, isCategoriesLoading, categoriesError] = useFetching(async () => {
+        const result = await PostService.getParentСategories();
+        setCategories(result.results);
+    })
+
     useEffect(() => {
         fetchPosts();
     }, [page])
+
+    useEffect(() => {
+        fetchCategories();
+    }, [])
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
@@ -50,7 +61,7 @@ function App() {
     return (
         <div className="App">
             <Button style={{ marginTop: 50 }} onClick={() => setModal(true)}>
-                Создать пост
+                Открыть модальное окно
             </Button>
             <Modal visisble={modal} setVisible={setModal}>
                 <PostForm create={createPost} />
@@ -59,6 +70,13 @@ function App() {
                 filter={filter}
                 setFilter={setFilter}
             />
+            {categoriesError &&
+                <h1>Произошла ошибка ${categoriesError}</h1>
+            }
+            {isCategoriesLoading
+                ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
+                : <CategoriesList categories={categories} />
+            }
             {postError &&
                 <h1>Произошла ошибка ${postError}</h1>
             }

@@ -5,8 +5,14 @@ export default class PostService {
     return result;
   }
 
-  static async getParentСategories(id) {
+  static async getParentСategories() {
     const response = await fetch(`https://tetreco.com/api/catalog/parent_categories/`);
+    const result = await response.json();
+    return result;
+  }
+
+  static async getСategoriesChild(categoryName) {
+    const response = await fetch(`https://tetreco.com/api/catalog/${categoryName}/subcategories/`);
     const result = await response.json();
     return result;
   }

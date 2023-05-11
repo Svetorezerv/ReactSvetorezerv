@@ -17,8 +17,6 @@ const PostIdPage = () => {
         fetchPostById(params.id);
     }, []);
 
-    console.log(post[0]);
-
     function loading() {
         if (post[0] === undefined) {
             return true;

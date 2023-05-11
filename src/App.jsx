@@ -1,6 +1,6 @@
 import "./styles/App.css";
 import AppRouter from './components/AppRouter';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import { AuthorizationContext } from "./context";
 import { useEffect, useState } from "react";
@@ -22,10 +22,10 @@ function App() {
       setIsAuthorization,
       isLoading,
     }}>
-      <BrowserRouter>
+      <HashRouter>
         <Navbar></Navbar>
         <AppRouter />
-      </BrowserRouter>
+      </HashRouter>
     </AuthorizationContext.Provider>
   )
 }

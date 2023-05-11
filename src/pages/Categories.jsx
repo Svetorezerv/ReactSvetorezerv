@@ -9,7 +9,7 @@ import CategoriesList from '../components/CategoriesList';
 const Categories = () => {
     const params = useParams();
     const [categoriesChild, setCategoriesChild] = useState({});
-    const [fetchCategoriesChilds, isLoading, error] = useFetching(async (categories) => {
+    const [fetchCategoriesChilds, isCategoriesLoading, error] = useFetching(async (categories) => {
         const response = await PostService.getСategoriesChild(categories)
         console.log(response);
         setCategoriesChild(response.results)
@@ -21,7 +21,13 @@ const Categories = () => {
 
     return (
         <div>
-              <h1>Вы открыли страницу категории: {params.categories}</h1>
+            {isCategoriesLoading
+                ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
+                : <div>
+                    <h1>Вы открыли страницу категории: {params.categories}</h1>
+                    <CategoriesList categories={categoriesChild} />
+                </div>
+            }
         </div>
     );
 };

@@ -10,6 +10,7 @@ export const privateRoutes = [
     {path: '/posts', element: Posts, exact: true},
     {path: '/posts/:categories', element: Categories, exact: true},
     {path: '/posts/:categories/:id', element: PostIdPage, exact: true},
+    {path: '/posts/:categories/:id/*', element: PostIdPage, exact: true},
 ]
 
 export const publicRoutes = [

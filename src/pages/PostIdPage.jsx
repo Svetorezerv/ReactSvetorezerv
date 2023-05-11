@@ -14,7 +14,7 @@ const PostIdPage = () => {
     })
 
     useEffect(() => {
-        fetchPostById(params.id);
+        fetchPostById(params.id.toLowerCase());
     }, []);
 
     function loading() {

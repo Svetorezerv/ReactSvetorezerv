@@ -4,17 +4,19 @@ import { useFetching } from '../hooks/useFetching';
 import PostService from '../API/PostService';
 import "../styles/App.css";
 import Loader from '../components/UI/loader/Loader';
+import CategoriesList from '../components/CategoriesList';
 
 const Categories = () => {
     const params = useParams();
     const [categoriesChild, setCategoriesChild] = useState({});
     const [fetchCategoriesChilds, isLoading, error] = useFetching(async (categories) => {
         const response = await PostService.getСategoriesChild(categories)
+        console.log(response);
         setCategoriesChild(response.results)
     })
 
     useEffect(() => {
-        fetchCategoriesChilds(params.categories);
+        fetchCategoriesChilds(params.categories.toLowerCase());
     }, []);
 
     return (

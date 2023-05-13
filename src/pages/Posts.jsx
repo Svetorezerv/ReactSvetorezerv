@@ -60,7 +60,7 @@ function App() {
 
     return (
         <div className="App">
-            <Button style={{ marginTop: 50 }} onClick={() => setModal(true)}>
+            <Button onClick={() => setModal(true)}>
                 Открыть модальное окно
             </Button>
             <Modal visisble={modal} setVisible={setModal}>

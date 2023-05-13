@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Input from '../components/UI/input/Input'
 import Button from '../components/UI/button/Button'
 import { AuthorizationContext } from '../context';
+import "../styles/App.css";
 
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
     }
 
     return (
-        <div>
+        <div className='login'>
             <h1>Страница для логина</h1>
             <form onSubmit={login}>
                 <Input type="text" placeholder='Введите логин' />

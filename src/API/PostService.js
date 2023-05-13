@@ -11,8 +11,8 @@ export default class PostService {
     return result;
   }
 
-  static async getСategoriesChild(categoryName) {
-    const response = await fetch(`https://tetreco.com/api/catalog/${categoryName}/subcategories/`);
+  static async getСategoriesChild(categoryName, page, limit) {
+    const response = await fetch(`https://tetreco.com/api/catalog/${categoryName}/subcategories/?page=${page}&page_size=${limit}`);
     const result = await response.json();
     return result;
   }

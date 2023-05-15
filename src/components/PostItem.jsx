@@ -4,7 +4,7 @@ import "../styles/App.css";
 import { useNavigate } from 'react-router-dom'
 
 const PostItem = (props) => {
-    const router = useNavigate(); 
+    const router = useNavigate();
     return (
         <div className="post">
             <div className="post__content">
@@ -15,10 +15,16 @@ const PostItem = (props) => {
                     </div>
                     : null
                 }
+                {props.post.price
+                    ? <p>
+                        {props.post.price}
+                    </p>
+                    : null
+                }
             </div>
             <div className="post__buttons">
-            <Button onClick={() => router(`/posts/${props.post.slug}/${props.post.name}`)}>Открыть</Button>
-            <Button onClick={() => props.remove(props.post)}>Удалить</Button>
+                <Button onClick={() => router(`/posts/${props.post.slug}/${props.post.name}`)}>Открыть</Button>
+                <Button onClick={() => props.remove(props.post)}>Удалить</Button>
             </div>
         </div>
     )

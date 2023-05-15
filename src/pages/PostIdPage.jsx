@@ -8,7 +8,7 @@ import Loader from '../components/UI/loader/Loader';
 const PostIdPage = () => {
     const params = useParams();
     const [post, setPost] = useState({});
-    const [fetchPostById, isLoading, error] = useFetching(async (id) => {
+    const [fetchPostById] = useFetching(async (id) => {
         const response = await PostService.getById(id)
         setPost(response.results)
     })

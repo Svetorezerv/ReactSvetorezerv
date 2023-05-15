@@ -6,7 +6,7 @@ import "../styles/App.css";
 
 
 const Login = () => {
-    const { isAuthorization, setIsAuthorization } = useContext(AuthorizationContext);
+    const { setIsAuthorization } = useContext(AuthorizationContext);
     const login = event => {
         event.preventDefault();
         setIsAuthorization(true);

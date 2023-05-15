@@ -10,13 +10,13 @@ import CategoriesList from '../components/CategoriesList';
 
 const Categories = () => {
     const [totalPages, setTotalPages] = useState(0);
-    const [limit, setLimit] = useState(5);
+    const [limit] = useState(5);
     const [page, setPage] = useState(1);
 
     const params = useParams();
     console.log(params);
     const [categoriesChild, setCategoriesChild] = useState({});
-    const [fetchCategoriesChilds, isCategoriesLoading, error] = useFetching(async (categories) => {
+    const [fetchCategoriesChilds, isCategoriesLoading] = useFetching(async (categories) => {
         const response = await PostService.getСategoriesChild(categories, page, limit);
         console.log(response);
         setCategoriesChild(response.results)

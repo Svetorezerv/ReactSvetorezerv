@@ -4,7 +4,7 @@ import Button from './UI/button/Button';
 import { AuthorizationContext } from '../context';
 
 const Navbar = () => {
-    const { isAuthorization, setIsAuthorization } = useContext(AuthorizationContext);
+    const {  setIsAuthorization } = useContext(AuthorizationContext);
 
     const logout = () => {
         setIsAuthorization(false)

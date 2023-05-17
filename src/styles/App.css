@@ -55,6 +55,16 @@ p {
     min-height: 600px;
 }
 
+.subcategories {
+    margin-top: 100px;
+    min-height: 1000px; 
+}
+
+.adsitems {
+    margin-top: 100px;
+    min-height: 1000px; 
+}
+
 .heading {
     align-items: center;
     text-align: center;
@@ -133,10 +143,6 @@ p {
 .categories__image {
     height: 100px;
     width: 100px;
-}
-
-.subcategories {
-    margin-top: 100px;
 }
 
 .subcategories__image {

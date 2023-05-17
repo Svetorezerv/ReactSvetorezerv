@@ -34,8 +34,8 @@ const AdsItems = () => {
     let pagesArray = [];
 
     return (
-        <div>
-          <div className='container subcategories'>
+        <div className='adsitems'>
+          <div className='container'>
             {isAdsItemLoading
                 ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
                 : <div>

@@ -20,6 +20,7 @@ const SubCategories = () => {
         setSubCategories(response.results)
         const totalPages = response.count;
         setTotalPages(getPageCount(totalPages, limit));
+        console.log(response);
     })
 
     useEffect(() => {
@@ -31,14 +32,13 @@ const SubCategories = () => {
     }
 
     let pagesArray = [];
-
     return (
         <div className='container subcategories'>
             {isCategoriesLoading
                 ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
                 : <div>
                     <h1 className='heading'>Вы открыли страницу категории: {params.subcategories}</h1>
-                    <SubCategoriesList subCategories={subCategories}/>
+                    <SubCategoriesList subCategories={subCategories} />
                     <Pagination
                         pagesArray={pagesArray}
                         totalPages={totalPages}

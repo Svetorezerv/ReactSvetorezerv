@@ -6,25 +6,25 @@ import "../styles/App.css";
 import { getPageCount } from '../utils/pages';
 import Loader from '../components/UI/loader/Loader';
 import Pagination from '../components/UI/pagination/Pagination';
-import SubCategoriesList from '../components/SubCategoriesList';
+import AdsList from '../components/AdsList';
 
-const SubCategories = () => {
+const AdsItems = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [limit] = useState(15);
     const [page, setPage] = useState(1);
 
     const params = useParams();
-    const [subCategories, setSubCategories] = useState({});
-    const [fetchsubCategories, isSubategoriesLoading] = useFetching(async (subCategories) => {
-        const response = await PostService.getСategoriesChild(subCategories, page, limit);
-        setSubCategories(response.results)
+    const [adsItem, setAdsItem] = useState({});
+    const [fetchAdsItem, isAdsItemLoading] = useFetching(async (adsItem) => {
+        const response = await PostService.getsSubСategoriesItems(adsItem, page, limit);
+        setAdsItem(response.results)
         const totalPages = response.count;
         setTotalPages(getPageCount(totalPages, limit));
-        console.log(response);
     })
 
+
     useEffect(() => {
-        fetchsubCategories(params.subcategories.toLowerCase());
+        fetchAdsItem(params.subcategories.toLowerCase());
     }, [page]);
 
     const changePage = (page) => {
@@ -32,13 +32,15 @@ const SubCategories = () => {
     }
 
     let pagesArray = [];
+
     return (
-        <div className='container subcategories'>
-            {isSubategoriesLoading
+        <div>
+          <div className='container subcategories'>
+            {isAdsItemLoading
                 ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
                 : <div>
                     <h1 className='heading'>Вы открыли страницу категории: {params.subcategories}</h1>
-                    <SubCategoriesList subCategories={subCategories} />
+                    <AdsList subCategories={adsItem} />
                     <Pagination
                         pagesArray={pagesArray}
                         totalPages={totalPages}
@@ -48,7 +50,8 @@ const SubCategories = () => {
                 </div>
             }
         </div>
+        </div>
     );
 };
 
-export default SubCategories;
+export default AdsItems;

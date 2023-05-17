@@ -53,7 +53,7 @@ function App() {
     let pagesArray = [];
 
     return (
-        <div className="App">
+        <div className="App container">
             <Button onClick={() => setModal(true)}>
                 Открыть модальное окно
             </Button>

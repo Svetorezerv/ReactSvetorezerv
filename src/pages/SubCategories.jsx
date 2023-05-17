@@ -6,26 +6,24 @@ import "../styles/App.css";
 import { getPageCount } from '../utils/pages';
 import Loader from '../components/UI/loader/Loader';
 import Pagination from '../components/UI/pagination/Pagination';
-import CategoriesList from '../components/CategoriesList';
+import SubCategoriesList from '../components/SubCategoriesList';
 
-const Categories = () => {
+const SubCategories = () => {
     const [totalPages, setTotalPages] = useState(0);
-    const [limit] = useState(5);
+    const [limit] = useState(15);
     const [page, setPage] = useState(1);
 
     const params = useParams();
-    console.log(params);
-    const [categoriesChild, setCategoriesChild] = useState({});
-    const [fetchCategoriesChilds, isCategoriesLoading] = useFetching(async (categories) => {
-        const response = await PostService.getСategoriesChild(categories, page, limit);
-        console.log(response);
-        setCategoriesChild(response.results)
+    const [subCategories, setSubCategories] = useState({});
+    const [fetchsubCategories, isCategoriesLoading] = useFetching(async (subCategories) => {
+        const response = await PostService.getСategoriesChild(subCategories, page, limit);
+        setSubCategories(response.results)
         const totalPages = response.count;
         setTotalPages(getPageCount(totalPages, limit));
     })
 
     useEffect(() => {
-        fetchCategoriesChilds(params.categories.toLowerCase());
+        fetchsubCategories(params.subcategories.toLowerCase());
     }, [page]);
 
     const changePage = (page) => {
@@ -35,12 +33,12 @@ const Categories = () => {
     let pagesArray = [];
 
     return (
-        <div>
+        <div className='container subcategories'>
             {isCategoriesLoading
                 ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
                 : <div>
-                    <h1>Вы открыли страницу категории: {params.categories}</h1>
-                    <CategoriesList categories={categoriesChild} />
+                    <h1 className='heading'>Вы открыли страницу категории: {params.subcategories}</h1>
+                    <SubCategoriesList subCategories={subCategories}/>
                     <Pagination
                         pagesArray={pagesArray}
                         totalPages={totalPages}
@@ -53,4 +51,4 @@ const Categories = () => {
     );
 };
 
-export default Categories;
+export default SubCategories;

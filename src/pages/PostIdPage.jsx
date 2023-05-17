@@ -13,6 +13,7 @@ const PostIdPage = () => {
         setPost(response.results)
     })
 
+    console.log(params);
     useEffect(() => {
         fetchPostById(params.id.toLowerCase());
     }, []);

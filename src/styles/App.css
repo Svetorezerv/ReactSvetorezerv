@@ -27,7 +27,7 @@ p {
 }
 
 .container {
-    max-width: 1365px;
+    max-width: 1320px;
     width: 100%;
     padding: 0 88px 0 88px;
     margin-right: auto;
@@ -42,7 +42,6 @@ p {
 
 .App {
     margin-top: 100px;
-    width: 800px;
     min-height: 1000px;
 }
 
@@ -90,7 +89,6 @@ p {
 
 .page {
     padding: 10px;
-
     margin: 0 5px;
     border: 1px solid yellowgreen;
     cursor: pointer;
@@ -137,6 +135,40 @@ p {
     width: 100px;
 }
 
+.subcategories {
+    margin-top: 100px;
+}
+
+.subcategories__image {
+    background: #FFFFFF;
+    border-radius: 8px 8px 0 0;
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.subcategories__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.subcategories__item {
+    background: #FFFFFF;
+    border-radius: 8px;
+    border: 1px solid yellowgreen;
+    cursor: pointer;
+    display: inherit;
+    flex: 1 0 auto;
+    flex-direction: column;
+    margin: 8px;
+    width: 200px;
+}
+
+.subcategorise__text {
+    margin-top: 6px;
+    text-align: center;
+}
+
 .footer {
     margin-top: 100px;
     font-size: 24px;
@@ -145,7 +177,6 @@ p {
     width: 100%;
     height: 200px;
 }
-
 
 .footer__list {
     margin-top: 50px;

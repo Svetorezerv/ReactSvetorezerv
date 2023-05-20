@@ -6,11 +6,11 @@ const Pagination = ({ pagesArray, totalPages, currentPage, changePage }) => {
     createPages(pagesArray, totalPages, currentPage)
     return (
         <div className='page__wrapper'>
-            {pagesArray.map(p =>
+            {pagesArray.map((page, index) =>
                 <span
-                    onClick={() => changePage(p)}
-                    key={p}
-                    className={currentPage === p ? "page page__current" : "page"}>{p}
+                    onClick={() => changePage(page)}
+                    key={index + 1}
+                    className={currentPage === page ? "page page__current" : "page"}>{page}
                 </span>
             )}
         </div>

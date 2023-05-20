@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom'
 const AdsItem = (props) => {
     const router = useNavigate();
     return (
-        <p onClick={() => router(`/posts/${props.subCategory.category.slug}/${props.subCategory.slug}/${props.subCategory.id}`)} className="subcategories__item">
+        <div onClick={() => router(`/posts/${props.subCategory.category.slug}/${props.subCategory.slug}/${props.subCategory.id}`)} className="subcategories__item">
             <img className="subcategories__image" src={props.subCategory.image} alt={props.subCategory.name} />
             <p className='subcategorise__text'>{props.subCategory.name}</p>
-        </p>
+            <p className='subcategorise__text'>{props.subCategory.created}</p>
+        </div>
     )
 }
 

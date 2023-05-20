@@ -13,7 +13,7 @@ const FinalItemId = () => {
     const [fetchFinalItemId, isFinalItemIdLoading] = useFetching(async (finalItemCategory, finalItemSubCategory, finalItemId) => {
         const response = await PostService.getsFinalItemId(finalItemCategory, finalItemSubCategory, finalItemId);
         console.log(response);
-        setFinalItemId(response)
+        setFinalItemId(response);
     })
 
     useEffect(() => {

@@ -5,12 +5,12 @@ import "../styles/App.css";
 const SubCategoriesList = ({ subCategories }) => {
     if (!subCategories.length) {
         return (
-            <h1 style={{ textAlign: 'center' }}>
+            <h1 className='heading'>
                 Подкатегории не найдены!
             </h1>
         )
     }
-   
+
     return (
         <div className='container subcategories__list'>
             {subCategories.map((subCategory, index) =>

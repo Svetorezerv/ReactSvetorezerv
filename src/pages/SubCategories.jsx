@@ -15,16 +15,15 @@ const SubCategories = () => {
 
     const params = useParams();
     const [subCategories, setSubCategories] = useState({});
-    const [fetchsubCategories, isSubategoriesLoading] = useFetching(async (subCategories) => {
+    const [fetchSubCategories, isSubategoriesLoading] = useFetching(async (subCategories) => {
         const response = await PostService.getСategoriesChild(subCategories, page, limit);
         setSubCategories(response.results)
         const totalPages = response.count;
         setTotalPages(getPageCount(totalPages, limit));
-        console.log(response);
     })
 
     useEffect(() => {
-        fetchsubCategories(params.subcategories.toLowerCase());
+        fetchSubCategories(params.subcategories.toLowerCase());
     }, [page]);
 
     const changePage = (page) => {

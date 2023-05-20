@@ -23,6 +23,12 @@ export default class PostService {
     return result;
   }
 
+  static async getsFinalItemId(category, subcategory, id) {
+    const response = await fetch(`https://tetreco.com/api/catalog/${category}/${subcategory}/${id}`);
+    const result = await response.json();
+    return result;
+  }
+
   static async getById(id) {
     const response = await fetch(`https://tetreco.com/api/catalog/?search=${id}`);
     const result = await response.json();

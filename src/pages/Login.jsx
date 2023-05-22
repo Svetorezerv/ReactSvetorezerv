@@ -12,11 +12,11 @@ const Login = () => {
     return (
         <div className='login'>
             <div>Авторизация</div>
-            <form action="/api/account/login/" method="POST">
+            <div>
                 <AuthInput value={username} setValue={setUsername} type="text" placeholder="Введите username..." />
                 <AuthInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль..." />
-                <Button type='submit' onClick={() => AuthorisationService.postLogin(username, password)}>Войти</Button>
-            </form>
+                <Button onClick={async () => console.log(await AuthorisationService.postLogin(username, password))}>Войти</Button>
+            </div>
         </div>
     );
 };

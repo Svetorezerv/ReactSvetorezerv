@@ -1,25 +1,21 @@
-import React, { useContext } from 'react';
-import Input from '../components/UI/input/Input'
+import React, { useState } from 'react';
+import AuthInput from '../components/UI/input/AuthInput'
 import Button from '../components/UI/button/Button'
-import { AuthorizationContext } from '../context';
+import AuthorisationService from '../API/AuthorisationService';
 import "../styles/App.css";
 
 
 const Login = () => {
-    const { setIsAuthorization } = useContext(AuthorizationContext);
-    const login = event => {
-        event.preventDefault();
-        setIsAuthorization(true);
-        localStorage.setItem('authorization', 'true');
-    }
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
     return (
         <div className='login'>
-            <h1>Страница для логина</h1>
-            <form onSubmit={login}>
-                <Input type="text" placeholder='Введите логин' />
-                <Input type="password" placeholder='Введите пароль' />
-                <Button>Войти</Button>
+            <div>Авторизация</div>
+            <form action="/api/account/login/" method="POST">
+                <AuthInput value={username} setValue={setUsername} type="text" placeholder="Введите username..." />
+                <AuthInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль..." />
+                <Button type='submit' onClick={() => AuthorisationService.postLogin(username, password)}>Войти</Button>
             </form>
         </div>
     );

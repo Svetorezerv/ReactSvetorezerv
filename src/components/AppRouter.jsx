@@ -3,19 +3,20 @@ import { Routes, Route, } from 'react-router-dom';
 import Posts from '../pages/Posts';
 import Negative from '../pages/Negative';
 import { privateRoutes, publicRoutes } from "../router";
-import Login from '../pages/Login';
-import { AuthorizationContext } from '../context';
-import Loader from './UI/loader/Loader';
+// import Loader from './UI/loader/Loader';
+import { Context } from '../App';
+import Auth from '../pages/Auth';
+import { observer } from 'mobx-react-lite';
 
-const AppRouter = () => {
-  const { isAuthorization, isLoading } = useContext(AuthorizationContext);
+const AppRouter = observer(() => {
+  const { user } = useContext(Context)
 
-  if (isLoading) {
-    return <Loader/>;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
-    isAuthorization
+    user.isAuth
       ?
       <Routes>
         {privateRoutes.map(route =>
@@ -27,7 +28,7 @@ const AppRouter = () => {
           />
         )}
         <Route path='/' element={<Posts />} />
-        <Route path="/*" element={<Negative to="/error" replace />} />
+        <Route path="/*" element={<Posts />} />
       </Routes>
       :
       <Routes>
@@ -39,9 +40,10 @@ const AppRouter = () => {
             key={route.path}
           />
         )}
-        <Route path="/*" element={<Login />} />
+        <Route path="/" element={<Auth />} />
+        <Route path="/*" element={<Auth />} />
       </Routes>
   );
-};
+});
 
 export default AppRouter;

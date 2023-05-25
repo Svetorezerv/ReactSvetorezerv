@@ -12,7 +12,6 @@ export default class AuthorisationService {
                 password,
             }),
         });
-        
         const result = await response.json();
         return result;
     }

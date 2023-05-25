@@ -50,6 +50,11 @@ p {
     min-height: 600px;
 }
 
+.login-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
 .about {
     margin-top: 100px;
     min-height: 600px;

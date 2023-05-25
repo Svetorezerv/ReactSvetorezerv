@@ -1,25 +1,25 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './UI/button/Button';
-import { AuthorizationContext } from '../context';
+import { Context } from '../App';
+import { observer } from 'mobx-react-lite'
 
-const Navbar = () => {
-    const {  setIsAuthorization } = useContext(AuthorizationContext);
-
-    const logout = () => {
-        setIsAuthorization(false)
-        localStorage.removeItem('authorization')
-    }
-
+const Navbar = observer(() => {
+    const { user } = useContext(Context)
     return (
         <div className='navbar'>
             <div className='container'>
                 <div className='navbar__content'>
-                  <div>
-                  <Button onClick={logout}>
-                        Выйти
-                    </Button>
-                  </div>
+                    <Link to="./posts">TETRECO</Link>
+                    {user.isAuth ?
+                        <Button onClick={() => user.setIsAuth(false)}>
+                            Выйти
+                        </Button>
+                        :
+                        <Button onClick={() => user.setIsAuth(true)}>
+                            Авторизация
+                        </Button>
+                    }
                     <div className="navbar__links">
                         <Link to="./about">О нас</Link>
                         <Link to="./posts">Посты</Link>
@@ -28,6 +28,6 @@ const Navbar = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Navbar;

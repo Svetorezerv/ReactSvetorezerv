@@ -13,6 +13,7 @@ const Modal = ({ children, visisble, setVisible }) => {
             <div className={classes.modal__content} onClick={(e) => e.stopPropagation()}>
                 {children}
             </div>
+            <button onClick={() => setVisible(false)}>X</button>
         </div>
     );
 };

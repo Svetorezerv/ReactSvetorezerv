@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import AuthInput from '../components/UI/input/AuthInput';
 import Button from '../components/UI/button/Button';
-import { NavLink, useLocation, useNavigate, redirect } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { login, registration } from '../API/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../App';
@@ -11,22 +11,35 @@ const Auth = observer(() => {
     const location = useLocation()
     const navigate = useNavigate();
     const isLogin = location.pathname === '/login';
+    const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
 
     const click = async () => {
-        try {
-            let data;
-            if (isLogin) {
+        let data;
+        let resp;
+        if (isLogin) {
+            try {
                 data = await login(username, password);
-            } else {
-                data = await registration(username, password);
+                user.setUser(user);
+                user.setIsAuth(true);
+                navigate('/posts');
             }
-            user.setUser(user);
-            user.setIsAuth(true);
-            navigate('/');
-        } catch (error) {
-            console.log(error.response.data.detail)
+            catch (error) {
+                console.log(error.response.data.detail);
+                alert(error.response.data.detail)
+            }
+        } else {
+            resp = await registration(email, username, password, password2);
+            data = await resp.json();
+            console.log(resp);
+            console.log(data);
+            if (resp.status === 400) {
+                alert('error')
+            } else if (resp.status === 201) {
+                alert('ready')
+            }
         }
     }
 
@@ -34,8 +47,20 @@ const Auth = observer(() => {
         <div className='login'>
             <h2>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
             <form>
-                <AuthInput value={username} setValue={setUsername} type="text" placeholder="Введите username..." />
-                <AuthInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль..." />
+                {isLogin
+                    ?
+                    <span>
+                        <AuthInput value={username} setValue={setUsername} type="text" placeholder="Введите username..." />
+                        <AuthInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль..." />
+                    </span>
+                    :
+                    <span>
+                        <AuthInput value={email} setValue={setEmail} type="email" placeholder="Введите email..." />
+                        <AuthInput value={username} setValue={setUsername} type="text" placeholder="Введите username..." />
+                        <AuthInput value={password} setValue={setPassword} type="password" placeholder="Введите пароль..." />
+                        <AuthInput value={password2} setValue={setPassword2} type="password" placeholder="Подтвердите пароль..." />
+                    </span>
+                }
                 <div className='login-bottom'>
                     {isLogin ?
                         <span>

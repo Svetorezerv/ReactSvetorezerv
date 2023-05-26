@@ -1,19 +1,13 @@
 import React, { useContext } from 'react';
-import { Routes, Route, } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Posts from '../pages/Posts';
-import Negative from '../pages/Negative';
 import { privateRoutes, publicRoutes } from "../router";
-// import Loader from './UI/loader/Loader';
 import { Context } from '../App';
 import Auth from '../pages/Auth';
 import { observer } from 'mobx-react-lite';
 
 const AppRouter = observer(() => {
-  const { user } = useContext(Context)
-
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
+  const { user } = useContext(Context);
 
   return (
     user.isAuth
@@ -23,7 +17,6 @@ const AppRouter = observer(() => {
           <Route
             element={<route.element />}
             path={route.path}
-            exact={route.exact}
             key={route.path}
           />
         )}
@@ -36,7 +29,6 @@ const AppRouter = observer(() => {
           <Route
             element={<route.element />}
             path={route.path}
-            exact={route.exact}
             key={route.path}
           />
         )}

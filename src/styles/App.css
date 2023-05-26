@@ -75,6 +75,10 @@ p {
     min-height: 1000px; 
 }
 
+.main-link {
+    margin-right: 20px;
+}
+
 .heading {
     align-items: center;
     text-align: center;

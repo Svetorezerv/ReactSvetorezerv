@@ -1,22 +1,28 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from './UI/button/Button';
 import { Context } from '../App';
 import { observer } from 'mobx-react-lite'
 
 const Navbar = observer(() => {
-    const { user } = useContext(Context)
+    const { user } = useContext(Context);
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        user.setUser({})
+        user.setIsAuth(false);
+    }
     return (
         <div className='navbar'>
             <div className='container'>
                 <div className='navbar__content'>
-                    <Link to="./posts">TETRECO</Link>
+                    <Link className='main-link' to="./posts">TETRECO</Link>
                     {user.isAuth ?
-                        <Button onClick={() => user.setIsAuth(false)}>
+                        <Button onClick={() => logOut()}>
                             Выйти
                         </Button>
                         :
-                        <Button onClick={() => user.setIsAuth(true)}>
+                        <Button onClick={() => navigate('/register')}>
                             Авторизация
                         </Button>
                     }

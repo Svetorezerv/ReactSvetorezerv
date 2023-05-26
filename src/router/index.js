@@ -7,13 +7,13 @@ import AdsItems from "../pages/AdsItems";
 import FinalItemId from "../pages/FinalItemId";
 
 export const privateRoutes = [
-  {path: "/about", element: About, exact: true},
-  {path: "/posts", element: Posts, exact: true},
-  {path: "/posts/:subcategories", element: SubCategories, exact: true},
-  {path: "/posts/:subcategories/ads", element: AdsItems, exact: true},
-  {path: "/posts/:category/:subcategory/:id", element: FinalItemId, exact: true},
-  {path: "/posts/:subcategories/:id", element: PostIdPage, exact: true},
-  {path: "/posts/:subcategories/:id/*", element: PostIdPage, exact: true},
+  {path: "/about", element: About},
+  {path: "/posts", element: Posts},
+  {path: "/posts/:subcategories", element: SubCategories},
+  {path: "/posts/:subcategories/ads", element: AdsItems},
+  {path: "/posts/:category/:subcategory/:id", element: FinalItemId},
+  {path: "/posts/:subcategories/:id", element: PostIdPage},
+  {path: "/posts/:subcategories/:id/*", element: PostIdPage},
 ];
 
 export const publicRoutes = [

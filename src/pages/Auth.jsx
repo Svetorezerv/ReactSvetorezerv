@@ -4,7 +4,7 @@ import Button from '../components/UI/button/Button';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { login, registration } from '../API/userAPI';
 import { observer } from 'mobx-react-lite';
-import { Context } from '../App';
+import { Context } from '../index';
 
 const Auth = observer(() => {
     const { user } = useContext(Context);
@@ -27,16 +27,14 @@ const Auth = observer(() => {
                 navigate('/posts');
             }
             catch (error) {
-                console.log(error.response.data.detail);
-                alert(error.response.data.detail)
+                console.log(error);
+                alert(error.response.data.non_field_errors)
             }
         } else {
             resp = await registration(email, username, password, password2);
-            data = await resp.json();
-            console.log(resp);
-            console.log(data);
+            data = await resp.json();;
             if (resp.status === 400) {
-                alert('error')
+                alert(Object.entries(data))
             } else if (resp.status === 201) {
                 alert('ready')
             }

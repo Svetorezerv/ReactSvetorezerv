@@ -1,5 +1,9 @@
-import { $host } from "./index";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
+
+const $host = axios.create({
+    baseURL: process.env.REACT_APP_API_URL
+});
 
 export const registration = async (email, username, password, password2) => {
   const response = await fetch('https://tetreco.com/api/account/register/', {
@@ -25,8 +29,7 @@ export const registration = async (email, username, password, password2) => {
 };
 
 export const login = async (username, password) => {
-  const { data } = await $host.post("/account/token/", { username, password });
-  localStorage.setItem('token', data.access)
-  console.log(jwtDecode(data.access));
-  return jwtDecode(data.access);
+  const { data } = await $host.post("/account/login/", { username, password });
+  localStorage.setItem('data', data);
+  return data;
 };

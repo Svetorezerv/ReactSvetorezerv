@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './UI/button/Button';
-import { Context } from '../App';
+import { Context } from '../index.js';
 import { observer } from 'mobx-react-lite'
 
 const Navbar = observer(() => {

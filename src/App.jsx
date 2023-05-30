@@ -20,10 +20,8 @@ const App = observer(() => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log(user._isAuth);
-      console.log(localStorage);
-      console.log(check());
-      if (check === true) {
+      let checkIsLogin = check();
+      if (checkIsLogin == true) {
         user.setUser(true);
         user.setIsAuth(true);
       }

@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import axios from "axios";
 
 const $host = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
+  baseURL: process.env.REACT_APP_API_URL
 });
 
 export const registration = async (email, username, password, password2) => {
@@ -33,3 +33,4 @@ export const login = async (username, password) => {
   localStorage.setItem('data', data);
   return data;
 };
+

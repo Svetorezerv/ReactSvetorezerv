@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Posts from '../pages/Posts';

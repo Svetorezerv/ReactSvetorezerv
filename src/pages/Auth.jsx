@@ -24,11 +24,12 @@ const Auth = observer(() => {
                 data = await login(username, password);
                 user.setUser(user);
                 user.setIsAuth(true);
+                user.setData(data);
                 navigate('/posts');
             }
             catch (error) {
                 console.log(error);
-                alert(error.response.data.non_field_errors)
+                alert(error.response.data.non_field_errors);
             }
         } else {
             resp = await registration(email, username, password, password2);

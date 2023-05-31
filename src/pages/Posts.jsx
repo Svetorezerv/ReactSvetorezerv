@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "../styles/App.css";
 import PostList from '../components/PostList';
 import PostFilter from '../components/PostFilter';
@@ -11,8 +11,12 @@ import { useFetching } from '../hooks/useFetching';
 import { getPageCount } from '../utils/pages';
 import Pagination from '../components/UI/pagination/Pagination';
 import CategoriesList from '../components/CategoriesList';
+import { Context } from '../index';
+import { observer } from 'mobx-react-lite';
 
-function App() {
+const Posts = observer(() => {
+    const { user } = useContext(Context);
+    console.log(user.data);
     const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({ sort: '', query: '' })
     const [modal, setModal] = useState(false);
@@ -53,7 +57,7 @@ function App() {
     let pagesArray = [];
 
     return (
-        <div className="App container">
+        <div className="posts container">
             <Button onClick={() => setModal(true)}>
                 Открыть модальное окно
             </Button>
@@ -86,6 +90,6 @@ function App() {
             />
         </div>
     );
-}
+});
 
-export default App;
+export default Posts;

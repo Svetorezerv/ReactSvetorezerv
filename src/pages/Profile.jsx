@@ -6,9 +6,12 @@ import { Context } from '../index';
 const Profile = observer(() => {
     const { user } = useContext(Context);
 
+    const data = JSON.parse(localStorage.getItem('data'));
+    console.log(data);
+
     function checkValue(data) {
-        if (data) return data
-        else return 'не указано'
+        if (data === '' || data === null || data.length === 0) return 'не указано';
+        else return data;
     }
 
     return (
@@ -17,43 +20,43 @@ const Profile = observer(() => {
             <ul>
                 <li>
                     avg_rating:
-                    {checkValue()}
+                    {checkValue(data.avg_rating)}
                 </li>
                 <li>
                     email:
-                    {checkValue()}
+                    {checkValue(data.email)}
                 </li>
                 <li>
                     feedback_count:
-                    {checkValue()}
+                    {checkValue(data.feedback_count)}
                 </li>
                 <li>
                     first_name:
-                    {checkValue()}
+                    {checkValue(data.first_name)}
                 </li>
                 <li>
                     id:
-                    {checkValue()}
+                    {checkValue(data.id)}
                 </li>
                 <li>
                     last_name:
-                    {checkValue()}
+                    {checkValue(data.last_name)}
                 </li>
                 <li>
                     phone:
-                    {checkValue()}
+                    {checkValue(data.phone)}
                 </li>
-                <li>
+                {/* <li>
                     profile:
-                    {checkValue()}
-                </li>
+                    {checkValue(data.profile)}
+                </li> */}
                 <li>
                     social_network:
-                    {checkValue()}
+                    {checkValue(data.social_network)}
                 </li>
                 <li>
                     username:
-                    {checkValue()}
+                    {checkValue(data.username)}
                 </li>
             </ul>
         </div>

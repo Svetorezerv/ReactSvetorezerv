@@ -30,7 +30,8 @@ export const registration = async (email, username, password, password2) => {
 
 export const login = async (username, password) => {
   const { data } = await $host.post("/account/login/", { username, password });
-  localStorage.setItem('data', data);
+  console.log(data);
+  localStorage.setItem('data', JSON.stringify(data));
   return data;
 };
 

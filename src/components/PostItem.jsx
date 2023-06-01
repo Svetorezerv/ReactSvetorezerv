@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom'
 
 const PostItem = (props) => {
     const router = useNavigate();
+    console.log(props.post);
     return (
         <div className="post">
+            <img src={props.post.image} alt={props.post.name} className='post-image'/>
             <div className="post__content">
                 <strong>{props.post.id}. {props.post.name}</strong>
                 {props.post.description

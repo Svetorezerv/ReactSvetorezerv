@@ -62,17 +62,17 @@ p {
 
 .subcategories {
     margin-top: 100px;
-    min-height: 1000px; 
+    min-height: 1000px;
 }
 
 .adsitems {
     margin-top: 100px;
-    min-height: 1000px; 
+    min-height: 1000px;
 }
 
 .final-id-item {
     margin-top: 100px;
-    min-height: 1000px; 
+    min-height: 1000px;
 }
 
 .main-link {
@@ -95,6 +95,22 @@ p {
     margin-top: 15px;
     justify-content: space-between;
     align-items: center;
+    width: 29%;
+    height: 400px;
+    flex-direction: column;
+}
+
+.post-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.post-image {
+    background: #FFFFFF;
+    height: 210px;
+    object-fit: cover;
+    width: 100%;
 }
 
 .posts-not-found {
@@ -200,4 +216,8 @@ p {
 
 .footer__list {
     margin-top: 50px;
+}
+
+.heading-margin {
+    margin: 30px 0;
 }

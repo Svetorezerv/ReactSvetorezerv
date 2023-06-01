@@ -14,7 +14,7 @@ export const registration = async (email, username, password, password2) => {
     },
     body: JSON.stringify({
       "email": email,
-      "first_name": " ",
+      "first_name": "",
       "last_name": "",
       "password": password,
       "password2": password2,
@@ -30,7 +30,6 @@ export const registration = async (email, username, password, password2) => {
 
 export const login = async (username, password) => {
   const { data } = await $host.post("/account/login/", { username, password });
-  console.log(data);
   localStorage.setItem('data', JSON.stringify(data));
   return data;
 };

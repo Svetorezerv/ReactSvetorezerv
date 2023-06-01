@@ -16,7 +16,6 @@ import { observer } from 'mobx-react-lite';
 
 const Posts = observer(() => {
     const { user } = useContext(Context);
-    console.log(user.data);
     const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({ sort: '', query: '' })
     const [modal, setModal] = useState(false);
@@ -80,7 +79,7 @@ const Posts = observer(() => {
             }
             {isPostsLoading
                 ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
-                : <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Список постов" />
+                : <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Список товаров" />
             }
             <Pagination
                 pagesArray={pagesArray}

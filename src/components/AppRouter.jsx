@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useContext } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Posts from '../pages/Posts';
 import { privateRoutes, publicRoutes } from "../router";
 import { Context } from '../index';
@@ -33,6 +33,7 @@ const AppRouter = observer(() => {
             key={route.path}
           />
         )}
+        <Route index element={<Navigate to="/login" />} />
         <Route path="/" element={<Auth />} />
         <Route path="/*" element={<Auth />} />
       </Routes>

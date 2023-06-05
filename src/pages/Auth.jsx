@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import AuthInput from '../components/UI/input/AuthInput';
 import Button from '../components/UI/button/Button';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { login, registration } from '../API/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
+import { NavLink } from '../../node_modules/react-router-dom/dist/index';
 
 const Auth = observer(() => {
     const { user } = useContext(Context);
@@ -16,9 +17,10 @@ const Auth = observer(() => {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
 
+    let data;
+    let resp;
+    
     const click = async () => {
-        let data;
-        let resp;
         if (isLogin) {
             try {
                 data = await login(username, password);
@@ -70,7 +72,7 @@ const Auth = observer(() => {
                             <NavLink to='/login'>Есть аккаунт? Авторизируйтесь!</NavLink>
                         </span>
                     }
-                    <Button onClick={async () => click()}>
+                    <Button onClick={async () => await click()}>
                         {isLogin ?
                             'Войти'
                             :

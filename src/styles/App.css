@@ -41,12 +41,12 @@ p {
 }
 
 .posts {
-    margin-top: 100px;
+    margin-top: 140px;
     min-height: 1000px;
 }
 
 .login {
-    margin-top: 100px;
+    margin-top: 140px;
     min-height: 600px;
 }
 
@@ -56,22 +56,27 @@ p {
 }
 
 .about {
-    margin-top: 100px;
+    margin-top: 140px;
+    min-height: 600px;
+}
+
+.contacts {
+    margin-top: 140px;
     min-height: 600px;
 }
 
 .subcategories {
-    margin-top: 100px;
+    margin-top: 140px;
     min-height: 1000px;
 }
 
 .adsitems {
-    margin-top: 100px;
+    margin-top: 140px;
     min-height: 1000px;
 }
 
 .final-id-item {
-    margin-top: 100px;
+    margin-top: 140px;
     min-height: 1000px;
 }
 
@@ -95,9 +100,20 @@ p {
     margin-top: 15px;
     justify-content: space-between;
     align-items: center;
-    width: 29%;
+    width: 24%;
     height: 400px;
     flex-direction: column;
+}
+
+.posts-filtered-content {
+    margin-top: 50px;
+}
+
+.post-top-content {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    justify-content: space-between;
 }
 
 .post-container {
@@ -111,6 +127,12 @@ p {
     height: 210px;
     object-fit: cover;
     width: 100%;
+}
+
+.contacts-flex {
+    display: flex;
+    justify-content: space-between;
+    min-width: 200px;
 }
 
 .posts-not-found {
@@ -140,19 +162,29 @@ p {
 }
 
 .navbar {
-    height: 50px;
+    position: fixed;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     background: lightcoral;
 }
 
 .navbar__content {
+    margin-top: 12px;
     width: 100%;
     align-items: center;
     display: flex;
     justify-content: space-between;
+}
+
+.navbar-bottom-content {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
 }
 
 .navbar__links {

@@ -1,14 +1,15 @@
 import React from 'react';
 import Select from './UI/select/Select';
 import Input from './UI/input/Input';
+import "../styles/App.css";
 
 const PostFilter = ({ filter, setFilter }) => {
   return (
-    <div>
+    <div className='post-filter'>
       <Input
         value={filter.query}
         onChange={e => setFilter({ ...filter, query: e.target.value })}
-        placeholder='Поиск'
+        placeholder='Поиск по странице'
       />
       <Select
         value={filter.sort}

@@ -33,9 +33,9 @@ const AppRouter = observer(() => {
             key={route.path}
           />
         )}
-        <Route index element={<Navigate to="/login" />} />
-        <Route path="/" element={<Auth />} />
-        <Route path="/*" element={<Auth />} />
+        <Route index element={<Navigate to="/posts" />} />
+        <Route path="/" element={<Posts />} />
+        <Route path="/*" element={<Posts />} />
       </Routes>
   );
 });

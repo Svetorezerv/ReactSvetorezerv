@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './UI/button/Button';
 import "../styles/App.css";
 import { Context } from '../index.js';
 import { observer } from 'mobx-react-lite'
+import Modal from './UI/modal/Modal';
 
 const Navbar = observer(() => {
     const { user } = useContext(Context);
@@ -14,6 +15,8 @@ const Navbar = observer(() => {
         user.setUser({})
         user.setIsAuth(false);
     }
+
+    const [modal, setModal] = useState(false);
     return (
         <div className='navbar'>
             <div className='container'>
@@ -31,14 +34,34 @@ const Navbar = observer(() => {
                             </Button>
                         </div>
                         :
-                        <Button onClick={() => navigate('/register')}>
-                            Авторизация
-                        </Button>
+                        <div>
+                            <span className='main-link'>
+                                <Button onClick={() => navigate('/login')}>
+                                    Авторизация
+                                </Button>
+                            </span>
+                            <Button onClick={() => navigate('/registration')}>
+                                Регистрация
+                            </Button>
+                        </div>
                     }
                     <div className="navbar__links">
                         <Link to="./about">О нас</Link>
+                        <Link to="./contacts">Контакты</Link>
                         <Link to="./posts">Посты</Link>
                     </div>
+                </div>
+            </div>
+            <div className='navbar-bottom-content container'>
+                <Button onClick={() => setModal(true)}>
+                    Категории
+                </Button>
+                <Modal visisble={modal} setVisible={setModal}>
+                    Модальное окно на будущее
+                </Modal>
+
+                <div>
+                    search
                 </div>
             </div>
         </div>

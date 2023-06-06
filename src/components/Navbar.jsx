@@ -5,6 +5,7 @@ import "../styles/App.css";
 import { Context } from '../index.js';
 import { observer } from 'mobx-react-lite'
 import Modal from './UI/modal/Modal';
+import Input from './UI/input/Input';
 
 const Navbar = observer(() => {
     const { user } = useContext(Context);
@@ -21,7 +22,14 @@ const Navbar = observer(() => {
         <div className='navbar'>
             <div className='container'>
                 <div className='navbar__content'>
+                    <div>
                     <Link className='main-link' to="./posts">TETRECO</Link>
+                    </div>
+                    <div className="navbar__links">
+                        <Link to="./about">О нас</Link>
+                        <Link to="./contacts">Контакты</Link>
+                        <Link to="./posts">Посты</Link>
+                    </div>
                     {user.isAuth ?
                         <div>
                             <span className='main-link'>
@@ -45,11 +53,6 @@ const Navbar = observer(() => {
                             </Button>
                         </div>
                     }
-                    <div className="navbar__links">
-                        <Link to="./about">О нас</Link>
-                        <Link to="./contacts">Контакты</Link>
-                        <Link to="./posts">Посты</Link>
-                    </div>
                 </div>
             </div>
             <div className='navbar-bottom-content container'>
@@ -60,8 +63,14 @@ const Navbar = observer(() => {
                     Модальное окно на будущее
                 </Modal>
 
-                <div>
-                    search
+                <div className='search-space'>
+                    <Input
+                        value={''}
+                        placeholder='Поиск'
+                    />
+                    <Button onClick={''}>
+                        Поиск
+                    </Button>
                 </div>
             </div>
         </div>

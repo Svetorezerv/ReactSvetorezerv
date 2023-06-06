@@ -41,12 +41,12 @@ p {
 }
 
 .posts {
-    margin-top: 140px;
+    margin-top: 160px;
     min-height: 1000px;
 }
 
 .login {
-    margin-top: 140px;
+    margin-top: 160px;
     min-height: 600px;
 }
 
@@ -56,32 +56,40 @@ p {
 }
 
 .about {
-    margin-top: 140px;
+    margin-top: 160px;
     min-height: 600px;
 }
 
 .contacts {
-    margin-top: 140px;
+    margin-top: 160px;
     min-height: 600px;
 }
 
 .subcategories {
-    margin-top: 140px;
+    margin-top: 160px;
     min-height: 1000px;
 }
 
 .adsitems {
-    margin-top: 140px;
+    margin-top: 160px;
     min-height: 1000px;
 }
 
 .final-id-item {
-    margin-top: 140px;
+    margin-top: 160px;
     min-height: 1000px;
 }
 
 .main-link {
     margin-right: 20px;
+}
+
+.search-space {
+    min-width: 500px;
+    height: 50px;
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .heading {
@@ -185,11 +193,6 @@ p {
     justify-content: space-between;
     align-items: center;
     margin: 20px 0;
-}
-
-.navbar__links {
-    margin-left: auto;
-    margin-right: 0;
 }
 
 .navbar__links a:not(:last-child) {

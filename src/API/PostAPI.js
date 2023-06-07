@@ -29,8 +29,8 @@ export default class PostService {
     return result;
   }
 
-  static async getById(id) {
-    const response = await fetch(`https://tetreco.com/api/catalog/?search=${id}`);
+  static async getById(id, page, limit) {
+    const response = await fetch(`https://tetreco.com/api/catalog/?search=${id}&page=${page}&page_size=${limit}`);
     const result = await response.json();
     return result;
   }

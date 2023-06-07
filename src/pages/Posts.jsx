@@ -23,11 +23,14 @@ const Posts = observer(() => {
     const [categories, setCategories] = useState([])
 
     const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
-        if (search.data !== null) {
-            // const result = await PostService.getAll(limit, page);
-            // setPosts(result.results);
-            // const totalPages = result.count;
-            // setTotalPages(getPageCount(totalPages, limit));
+        if (search.data !== null && search.data !== '') {
+            console.log(search.data);
+            const id = search.data;
+            const result = await PostService.getById(id, limit, page);
+            console.log(result);
+            setPosts(result.results);
+            const totalPages = result.count;
+            setTotalPages(getPageCount(totalPages, limit));
         } else {
             const result = await PostService.getAll(limit, page);
             setPosts(result.results);
@@ -40,6 +43,10 @@ const Posts = observer(() => {
         const result = await PostService.getParentСategories();
         setCategories(result.results);
     })
+
+    useEffect(() => {
+        fetchPosts();
+    }, [search.data])
 
     useEffect(() => {
         fetchPosts();

@@ -4,13 +4,15 @@ import Button from './UI/button/Button';
 import "../styles/App.css";
 import { observer } from 'mobx-react-lite'
 import Modal from './UI/modal/Modal';
-import Input from './UI/input/Input';
-import { Context } from '..';
-
+import AuthInput from './UI/input/AuthInput';
+import { Context } from '../index';
 
 
 const Navbar = observer(() => {
-    const { user } = useContext(Context);
+    const { user, search } = useContext(Context);
+
+    const [modal, setModal] = useState(false);
+    const [value, setValue] = useState('');
     const navigate = useNavigate();
     const logOut = () => {
         localStorage.removeItem('data')
@@ -18,7 +20,6 @@ const Navbar = observer(() => {
         user.setIsAuth(false);
     }
 
-    const [modal, setModal] = useState(false);
     return (
         <div className='navbar'>
             <div className='container'>
@@ -63,11 +64,8 @@ const Navbar = observer(() => {
                 </Modal>
 
                 <div className='search-space'>
-                    <Input
-                        value={''}
-                        placeholder='Поиск'
-                    />
-                    <Button onClick={''}>
+                    <AuthInput value={value} setValue={setValue} type="text" placeholder="Поиск" />
+                    <Button onClick={e => search.setData(value)}>
                         Поиск
                     </Button>
                 </div>

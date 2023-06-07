@@ -14,7 +14,7 @@ export const privateRoutes = [
 export const publicRoutes = [
   { path: "/posts", element: Posts },
   { path: "/login", element: Auth },
-  { path: "/registation", element: Auth },
+  { path: "/registration", element: Auth },
   { path: "/about", element: About },
   { path: "/contacts", element: Contacts },
   { path: "/profile", element: Profile },

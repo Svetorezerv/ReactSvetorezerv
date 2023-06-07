@@ -21,7 +21,7 @@ const App = observer(() => {
   useEffect(() => {
     setTimeout(() => {
       let checkIsLogin = check();
-      if (checkIsLogin == true) {
+      if (checkIsLogin === true) {
         user.setUser(true);
         user.setIsAuth(true);
       }

@@ -1,10 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import "../styles/App.css";
 import { observer } from 'mobx-react-lite';
-import { Context } from '../index';
 
 const Profile = observer(() => {
-    const { user } = useContext(Context);
 
     const data = JSON.parse(localStorage.getItem('data'));
     console.log(data);

@@ -65,7 +65,7 @@ const Navbar = observer(() => {
 
                 <div className='search-space'>
                     <AuthInput value={value} setValue={setValue} type="text" placeholder="Поиск" />
-                    <Button onClick={e => search.setData(value)}>
+                    <Button onClick={e => (search.setData(value), setValue(''))}>
                         Поиск
                     </Button>
                 </div>

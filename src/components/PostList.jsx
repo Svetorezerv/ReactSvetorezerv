@@ -3,7 +3,7 @@ import PostItem from './PostItem';
 import "../styles/App.css";
 import PostFilter from './PostFilter';
 
-const PostList = ({ posts, title, filter, setFilter }) => {
+const PostList = ({ posts, filter, setFilter }) => {
 
     if (!posts.length) {
         return (
@@ -20,7 +20,6 @@ const PostList = ({ posts, title, filter, setFilter }) => {
     return (
         <div>
             <div className='post-top-content'>
-                <h1 className='heading'>{title}</h1>
                 <PostFilter
                     filter={filter}
                     setFilter={setFilter}

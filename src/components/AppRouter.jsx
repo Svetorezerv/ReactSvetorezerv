@@ -4,7 +4,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Posts from '../pages/Posts';
 import { privateRoutes, publicRoutes } from "../router";
 import { Context } from '../index';
-import Auth from '../pages/Auth';
 import { observer } from 'mobx-react-lite';
 
 const AppRouter = observer(() => {

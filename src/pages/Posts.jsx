@@ -25,8 +25,8 @@ const Posts = observer(() => {
     const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
         if (search.data !== null && search.data !== '') {
             console.log(search.data);
-            const id = search.data;
-            const result = await PostService.getById(id, limit, page);
+            const name = search.data;
+            const result = await PostService.getByName(name, page, limit);
             console.log(result);
             setPosts(result.results);
             const totalPages = result.count;
@@ -78,7 +78,11 @@ const Posts = observer(() => {
                 ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
                 :
                 <div className='posts-filtered-content'>
-                    <PostList posts={sortedAndSearchedPosts} title="Список товаров" filter={filter} setFilter={setFilter} />
+                    {search.data !== null && search.data !== ''
+                        ? <h1>Результат поиска по запросу: {search.data}</h1>
+                        : <h1>Список постов</h1>
+                    }
+                    <PostList posts={sortedAndSearchedPosts} title={"Список товаров"} filter={filter} setFilter={setFilter} />
                 </div>
             }
             <Pagination

@@ -1,5 +1,5 @@
 export default class PostService {
-  static async getAll(limit = 10, page = 2) {
+  static async getAll(limit, page) {
     const response = await fetch(`https://tetreco.com/api/catalog/?page=${page}&page_size=${limit}`);
     const result = await response.json();
     return result;
@@ -29,8 +29,8 @@ export default class PostService {
     return result;
   }
 
-  static async getById(id, page, limit) {
-    const response = await fetch(`https://tetreco.com/api/catalog/?search=${id}&page=${page}&page_size=${limit}`);
+  static async getByName(name, page, limit) {
+    const response = await fetch(`https://tetreco.com/api/catalog/?search=${name}&page=${page}&page_size=${limit}`);
     const result = await response.json();
     return result;
   }

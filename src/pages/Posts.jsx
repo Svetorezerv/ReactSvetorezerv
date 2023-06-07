@@ -8,8 +8,8 @@ import { getPageCount } from '../utils/pages';
 import Pagination from '../components/UI/pagination/Pagination';
 import CategoriesList from '../components/CategoriesList';
 import { observer } from 'mobx-react-lite';
-import { Context } from '../index';
 import Loader from '../components/UI/loader/Loader';
+import { Context } from '../index';
 
 const Posts = observer(() => {
     const { search } = useContext(Context);
@@ -24,10 +24,10 @@ const Posts = observer(() => {
 
     const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
         if (search.data !== null) {
-            const result = await PostService.getAll(limit, page);
-            setPosts(result.results);
-            const totalPages = result.count;
-            setTotalPages(getPageCount(totalPages, limit));
+            // const result = await PostService.getAll(limit, page);
+            // setPosts(result.results);
+            // const totalPages = result.count;
+            // setTotalPages(getPageCount(totalPages, limit));
         } else {
             const result = await PostService.getAll(limit, page);
             setPosts(result.results);

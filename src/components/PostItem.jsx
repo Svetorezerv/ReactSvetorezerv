@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 
 const PostItem = (props) => {
     const router = useNavigate();
-    console.log(props.post);
     return (
         <div className="post">
             <img src={props.post.image} alt={props.post.name} className='post-image'/>
@@ -25,8 +24,7 @@ const PostItem = (props) => {
                 }
             </div>
             <div className="post__buttons">
-                <Button onClick={() => router(`/posts/${props.post.slug}/${props.post.name}`)}>Открыть</Button>
-                {/* <Button onClick={() => props.remove(props.post)}>Удалить</Button> */}
+                <Button onClick={() => router(`/posts/${props.post.category.slug}/${props.post.slug}/${props.post.id}`)}>Открыть</Button>
             </div>
         </div>
     )

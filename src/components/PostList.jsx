@@ -3,7 +3,7 @@ import PostItem from './PostItem';
 import "../styles/App.css";
 import PostFilter from './PostFilter';
 
-const PostList = ({ posts, title, remove, filter, setFilter }) => {
+const PostList = ({ posts, title, filter, setFilter }) => {
 
     if (!posts.length) {
         return (
@@ -28,7 +28,7 @@ const PostList = ({ posts, title, remove, filter, setFilter }) => {
             </div>
             <div className='post-container'>
                 {posts.map((post, index) =>
-                    <PostItem remove={remove} number={index + 1} post={post} key={post.id} />
+                    <PostItem number={index + 1} post={post} key={post.id} />
                 )}
             </div>
         </div>

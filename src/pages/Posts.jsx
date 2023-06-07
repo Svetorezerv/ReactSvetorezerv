@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "../styles/App.css";
 import PostList from '../components/PostList';
 import { usePosts } from '../hooks/usePosts'
-import PostService from '../API/PostService';
-import Loader from '../components/UI/loader/Loader'
+import PostService from '../API/PostAPI';
 import { useFetching } from '../hooks/useFetching';
 import { getPageCount } from '../utils/pages';
 import Pagination from '../components/UI/pagination/Pagination';
 import CategoriesList from '../components/CategoriesList';
-// import { Context } from '../index';
 import { observer } from 'mobx-react-lite';
+import { Context } from '../index';
+import Loader from '../components/UI/loader/Loader';
 
 const Posts = observer(() => {
-    // const { user } = useContext(Context);
+    const { search } = useContext(Context);
+
     const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({ sort: '', query: '' })
     const [totalPages, setTotalPages] = useState(0);
@@ -22,10 +23,17 @@ const Posts = observer(() => {
     const [categories, setCategories] = useState([])
 
     const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
-        const result = await PostService.getAll(limit, page);
-        setPosts(result.results);
-        const totalPages = result.count;
-        setTotalPages(getPageCount(totalPages, limit));
+        if (search.data !== null) {
+            const result = await PostService.getAll(limit, page);
+            setPosts(result.results);
+            const totalPages = result.count;
+            setTotalPages(getPageCount(totalPages, limit));
+        } else {
+            const result = await PostService.getAll(limit, page);
+            setPosts(result.results);
+            const totalPages = result.count;
+            setTotalPages(getPageCount(totalPages, limit));
+        }
     })
 
     const [fetchCategories, isCategoriesLoading, categoriesError] = useFetching(async () => {
@@ -40,10 +48,6 @@ const Posts = observer(() => {
     useEffect(() => {
         fetchCategories();
     }, [])
-
-    const removePost = (post) => {
-        setPosts(posts.filter(p => p.id !== post.id))
-    }
 
     const changePage = (page) => {
         setPage(page)
@@ -67,7 +71,7 @@ const Posts = observer(() => {
                 ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
                 :
                 <div className='posts-filtered-content'>
-                    <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Список товаров" filter={filter} setFilter={setFilter} />
+                    <PostList posts={sortedAndSearchedPosts} title="Список товаров" filter={filter} setFilter={setFilter} />
                 </div>
             }
             <Pagination

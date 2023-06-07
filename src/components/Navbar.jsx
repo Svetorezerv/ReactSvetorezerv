@@ -2,15 +2,16 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './UI/button/Button';
 import "../styles/App.css";
-import { Context } from '../index.js';
 import { observer } from 'mobx-react-lite'
 import Modal from './UI/modal/Modal';
 import Input from './UI/input/Input';
+import { Context } from '..';
+
+
 
 const Navbar = observer(() => {
     const { user } = useContext(Context);
     const navigate = useNavigate();
-
     const logOut = () => {
         localStorage.removeItem('data')
         user.setUser({})
@@ -22,9 +23,7 @@ const Navbar = observer(() => {
         <div className='navbar'>
             <div className='container'>
                 <div className='navbar__content'>
-                    <div>
                     <Link className='main-link' to="./posts">TETRECO</Link>
-                    </div>
                     <div className="navbar__links">
                         <Link to="./about">О нас</Link>
                         <Link to="./contacts">Контакты</Link>

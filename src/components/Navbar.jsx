@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './UI/button/Button';
 import "../styles/App.css";

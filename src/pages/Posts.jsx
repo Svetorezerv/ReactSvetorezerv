@@ -13,26 +13,28 @@ import { Context } from '../index';
 
 const Posts = observer(() => {
     const { search } = useContext(Context);
-
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
     const [filter, setFilter] = useState({ sort: '', query: '' })
     const [totalPages, setTotalPages] = useState(0);
     const [limit] = useState(16);
     const [page, setPage] = useState(1);
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
-    const [categories, setCategories] = useState([])
+    const [categories, setCategories] = useState([]);
+
+    console.log(search.data);
 
     const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
         if (search.data !== null && search.data !== '') {
             console.log(search.data);
             const name = search.data;
             const result = await PostService.getByName(name, page, limit);
-            console.log(result);
+            console.log('searchdata');
             setPosts(result.results);
             const totalPages = result.count;
             setTotalPages(getPageCount(totalPages, limit));
         } else {
             const result = await PostService.getAll(limit, page);
+            console.log('standart');
             setPosts(result.results);
             const totalPages = result.count;
             setTotalPages(getPageCount(totalPages, limit));
@@ -75,7 +77,7 @@ const Posts = observer(() => {
                 <h1>Произошла ошибка ${postError}</h1>
             }
             {isPostsLoading
-                ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>
+                ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50, minHeight: 1000 }}><Loader /></div>
                 :
                 <div className='posts-filtered-content'>
                     {search.data !== null && search.data !== ''
@@ -83,14 +85,14 @@ const Posts = observer(() => {
                         : <h1>Список постов</h1>
                     }
                     <PostList posts={sortedAndSearchedPosts} title={"Список товаров"} filter={filter} setFilter={setFilter} />
+                    <Pagination
+                        pagesArray={pagesArray}
+                        totalPages={totalPages}
+                        currentPage={page}
+                        changePage={changePage}
+                    />
                 </div>
             }
-            <Pagination
-                pagesArray={pagesArray}
-                totalPages={totalPages}
-                currentPage={page}
-                changePage={changePage}
-            />
         </div>
     );
 });

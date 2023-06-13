@@ -21,11 +21,8 @@ const Posts = observer(() => {
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
     const [categories, setCategories] = useState([]);
 
-    console.log(search.data);
-
     const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
         if (search.data !== null && search.data !== '') {
-            console.log(search.data);
             const name = search.data;
             const result = await PostService.getByName(name, page, limit);
             console.log('searchdata');
@@ -48,11 +45,7 @@ const Posts = observer(() => {
 
     useEffect(() => {
         fetchPosts();
-    }, [search.data])
-
-    useEffect(() => {
-        fetchPosts();
-    }, [page])
+    }, [search.data, page])
 
     useEffect(() => {
         fetchCategories();
@@ -84,7 +77,7 @@ const Posts = observer(() => {
                         ? <h1>Результат поиска по запросу: {search.data}</h1>
                         : <h1>Список постов</h1>
                     }
-                    <PostList posts={sortedAndSearchedPosts} title={"Список товаров"} filter={filter} setFilter={setFilter} />
+                    <PostList posts={sortedAndSearchedPosts} filter={filter} setFilter={setFilter} />
                     <Pagination
                         pagesArray={pagesArray}
                         totalPages={totalPages}

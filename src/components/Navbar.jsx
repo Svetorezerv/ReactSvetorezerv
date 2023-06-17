@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import Modal from './UI/modal/Modal';
 import AuthInput from './UI/input/AuthInput';
 import { Context } from '../index';
+import { logoutAPI } from '../API/userAPI';
 
 
 const Navbar = observer(() => {
@@ -15,9 +16,10 @@ const Navbar = observer(() => {
     const [value, setValue] = useState('');
     const navigate = useNavigate();
     const logOut = () => {
-        localStorage.removeItem('data')
+        logoutAPI();
         user.setUser({})
         user.setIsAuth(false);
+        navigate('/posts')
     }
 
     return (

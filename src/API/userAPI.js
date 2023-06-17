@@ -33,3 +33,9 @@ export const login = async (username, password) => {
   return data;
 };
 
+export const logoutAPI = async (username, password) => {
+  const { data } = await $host.delete("/account/", { username, password });
+  localStorage.removeItem('data');
+  return data;
+};
+

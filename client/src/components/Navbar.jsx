@@ -16,7 +16,7 @@ const Navbar = observer(() => {
     const [value, setValue] = useState('');
     const navigate = useNavigate();
     const logOut = () => {
-        logoutAPI();
+        localStorage.removeItem('data');
         user.setUser({})
         user.setIsAuth(false);
         navigate('/posts')
@@ -26,11 +26,11 @@ const Navbar = observer(() => {
         <div className='navbar'>
             <div className='container'>
                 <div className='navbar__content'>
-                    <Link className='main-link' to="./posts">TETRECO</Link>
+                    <Link className='main-link' to="/posts">TETRECO</Link>
                     <div className="navbar__links">
-                        <Link to="./about">О нас</Link>
-                        <Link to="./contacts">Контакты</Link>
-                        <Link to="./posts">Посты</Link>
+                        <Link to="/about">О нас</Link>
+                        <Link to="/contacts">Контакты</Link>
+                        <Link to="/posts">Посты</Link>
                     </div>
                     {user.isAuth ?
                         <div>
@@ -46,7 +46,7 @@ const Navbar = observer(() => {
                         :
                         <div>
                             <span className='main-link'>
-                                <Button onClick={() => navigate('login')}>
+                                <Button onClick={() => navigate('/login')}>
                                     Авторизация
                                 </Button>
                             </span>

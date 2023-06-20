@@ -6,8 +6,8 @@ import { login, registration } from '../API/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
 import { NavLink } from '../../node_modules/react-router-dom/dist/index';
-import { useFetching } from 'hooks/useFetching';
-import Loader from 'components/UI/loader/Loader';
+import { useFetching } from '../hooks/useFetching';
+import Loader from '../components/UI/loader/Loader';
 
 const Auth = observer(() => {
     const { user } = useContext(Context);
@@ -45,11 +45,6 @@ const Auth = observer(() => {
         }
     })
 
-    const click = async () => {
-        await fetchLogin();
-    }
-
-
     return (
         <div className='login'>
             <h2>{isLogin ? 'Авторизация' : 'Регистрация'}</h2>
@@ -78,11 +73,11 @@ const Auth = observer(() => {
                             <NavLink to='/login'>Есть аккаунт? Авторизируйтесь!</NavLink>
                         </span>
                     }
-                    {isLoginLoading
+                    {/* {isLoginLoading
                         ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50, minHeight: 1000 }}><Loader /></div>
-                        : <Navigate to="/posts" />
-                    }
-                    < Button onClick={async () => await click()}>
+                        : navigate('/posts')
+                    } */}
+                    < Button onClick={async () => await fetchLogin()}>
                         {isLogin ?
                             'Войти'
                             :

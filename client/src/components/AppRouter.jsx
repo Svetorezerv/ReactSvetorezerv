@@ -32,10 +32,9 @@ const AppRouter = observer(() => {
           key={route.path}
         />
       )}
-      <Route path="/*" />
       <Route index element={<Navigate to="/posts" />} />
-      <Route path="/" element={<Posts />}>
-      </Route>
+      <Route path="/" element={<Posts />} />
+      <Route path="*" element={<Posts />} />
     </Routes>
   );
 });

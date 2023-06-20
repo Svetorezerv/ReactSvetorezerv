@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
+import { BrowserRouter, Route, Navigate } from "react-router-dom";
 import AppRouter from './components/AppRouter';
-import { HashRouter } from 'react-router-dom';
 import "./styles/App.css";
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { observer } from "mobx-react-lite";
 import { Context } from "./index.js";
 import Loader from "./components/UI/loader/Loader";
+import Posts from "./pages/Posts";
 
 const App = observer(() => {
   const { user } = useContext(Context);
@@ -34,11 +35,11 @@ const App = observer(() => {
   }
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Navbar></Navbar>
       <AppRouter />
       <Footer></Footer>
-    </HashRouter>
+    </BrowserRouter>
   )
 });
 

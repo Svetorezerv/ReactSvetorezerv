@@ -1,4 +1,4 @@
-# ReactSvetorezerv
+# React-Svetorezerv
 
 npm install
 

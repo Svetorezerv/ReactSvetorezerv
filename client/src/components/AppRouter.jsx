@@ -24,18 +24,19 @@ const AppRouter = observer(() => {
     //     <Route path="/*" element={<Posts />} />
     //   </Routes>
     //   :
-      <Routes>
-        {publicRoutes.map(route =>
-          <Route
-            element={<route.element />}
-            path={route.path}
-            key={route.path}
-          />
-        )}
-        <Route index element={<Navigate to="/posts" />} />
-        <Route path="/" element={<Posts />} />
-        <Route path="/*" element={<Posts />} />
-      </Routes>
+    <Routes>
+      {publicRoutes.map(route =>
+        <Route
+          element={<route.element />}
+          path={route.path}
+          key={route.path}
+        />
+      )}
+      <Route path="/*" />
+      <Route index element={<Navigate to="/posts" />} />
+      <Route path="/" element={<Posts />}>
+      </Route>
+    </Routes>
   );
 });
 

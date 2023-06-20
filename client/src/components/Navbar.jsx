@@ -46,7 +46,7 @@ const Navbar = observer(() => {
                         :
                         <div>
                             <span className='main-link'>
-                                <Button onClick={() => navigate('/login')}>
+                                <Button onClick={() => navigate('login')}>
                                     Авторизация
                                 </Button>
                             </span>
@@ -64,13 +64,21 @@ const Navbar = observer(() => {
                 <Modal visisble={modal} setVisible={setModal}>
                     Модальное окно на будущее
                 </Modal>
-
                 <div className='search-space'>
                     <AuthInput value={value} setValue={setValue} type="text" placeholder="Поиск" />
                     <Button onClick={e => (search.setData(value), setValue(''))}>
                         Поиск
                     </Button>
                 </div>
+            {user.isAuth ?
+                <Button onClick={() => navigate('/postform')}>
+                    Создать карточку товара
+                </Button>
+                :
+                <Button onClick={() => navigate('/login')}>
+                    Создать карточку товара
+                </Button>
+            }
             </div>
         </div>
     );

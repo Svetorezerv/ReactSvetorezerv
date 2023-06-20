@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useContext } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Posts from '../pages/Posts';
 import { publicRoutes } from "../router";

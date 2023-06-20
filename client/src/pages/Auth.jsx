@@ -1,13 +1,11 @@
 import React, { useContext, useState } from 'react';
 import AuthInput from '../components/UI/input/AuthInput';
 import Button from '../components/UI/button/Button';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { login, registration } from '../API/userAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
 import { NavLink } from '../../node_modules/react-router-dom/dist/index';
-import { useFetching } from '../hooks/useFetching';
-import Loader from '../components/UI/loader/Loader';
 
 const Auth = observer(() => {
     const { user } = useContext(Context);
@@ -21,14 +19,15 @@ const Auth = observer(() => {
 
     let data;
     let resp;
-
-    const [fetchLogin, isLoginLoading, loginError] = useFetching(async () => {
+//по ходу из-за /login?
+    const click = async () => {
         if (isLogin) {
             try {
                 data = await login(username, password);
                 user.setUser(user);
                 user.setIsAuth(true);
                 user.setData(data);
+                navigate('/posts');
             }
             catch (error) {
                 console.log(error);
@@ -43,7 +42,7 @@ const Auth = observer(() => {
                 alert('ready')
             }
         }
-    })
+    }
 
     return (
         <div className='login'>
@@ -73,11 +72,7 @@ const Auth = observer(() => {
                             <NavLink to='/login'>Есть аккаунт? Авторизируйтесь!</NavLink>
                         </span>
                     }
-                    {/* {isLoginLoading
-                        ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50, minHeight: 1000 }}><Loader /></div>
-                        : navigate('/posts')
-                    } */}
-                    < Button onClick={async () => await fetchLogin()}>
+                    <Button onClick={click}>
                         {isLogin ?
                             'Войти'
                             :
@@ -85,8 +80,8 @@ const Auth = observer(() => {
                         }
                     </Button>
                 </div>
-            </form >
-        </div >
+            </form>
+        </div>
     );
 });
 

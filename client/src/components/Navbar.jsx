@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from './UI/button/Button';
 import "../styles/App.css";
@@ -6,7 +6,6 @@ import { observer } from 'mobx-react-lite'
 import Modal from './UI/modal/Modal';
 import AuthInput from './UI/input/AuthInput';
 import { Context } from '../index';
-import { logoutAPI } from '../API/userAPI';
 
 
 const Navbar = observer(() => {
@@ -66,19 +65,19 @@ const Navbar = observer(() => {
                 </Modal>
                 <div className='search-space'>
                     <AuthInput value={value} setValue={setValue} type="text" placeholder="Поиск" />
-                    <Button onClick={e => (search.setData(value), setValue(''))}>
+                    <Button onClick={() => (search.setData(value), setValue(''))}>
                         Поиск
                     </Button>
                 </div>
-            {user.isAuth ?
-                <Button onClick={() => navigate('/postform')}>
-                    Создать карточку товара
-                </Button>
-                :
-                <Button onClick={() => navigate('/login')}>
-                    Создать карточку товара
-                </Button>
-            }
+                {user.isAuth ?
+                    <Button onClick={() => navigate('/postform')}>
+                        Создать карточку товара
+                    </Button>
+                    :
+                    <Button onClick={() => navigate('/login')}>
+                        Создать карточку товара
+                    </Button>
+                }
             </div>
         </div>
     );

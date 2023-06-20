@@ -13,6 +13,7 @@ export const privateRoutes = [
 ];
 
 export const publicRoutes = [
+  { path: "/posts", element: Posts },
   { path: "/login", element: Auth },
   { path: "/registration", element: Auth },
   { path: "/about", element: About },
